@@ -2,6 +2,10 @@ package com.example.sd20204sof3062.buoi1.controller;
 
 import com.example.sd20204sof3062.buoi1.entity.SinhVien;
 import com.example.sd20204sof3062.buoi1.repository.SinhVienRepository;
+import com.example.sd20204sof3062.buoi1.request.SinhVienRequest;
+import com.example.sd20204sof3062.buoi1.response.SinhVienResponse;
+import com.example.sd20204sof3062.buoi1.service.SinhVienService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,25 +15,25 @@ import java.util.List;
 @RequestMapping("/sinh-vien")
 public class SinhVienController {
     @Autowired
-    SinhVienRepository sinhVienRepository;
+    SinhVienService sinhVienService;
 
     @GetMapping("/hien-thi")
-    public List<SinhVien> hienThi() {
-        return sinhVienRepository.findAll();
+    public List<SinhVienResponse> hienThi() {
+        return sinhVienService.getAll();
     }
 
     @PostMapping("/them")
-    public void them(@RequestBody SinhVien sinhVien) {
-        sinhVienRepository.save(sinhVien);
+    public void them(@RequestBody @Valid SinhVienRequest sinhVienRequest) {
+        sinhVienService.addSinhVien(sinhVienRequest);
     }
 
     @PutMapping("/sua")
-    public void sua(@RequestBody SinhVien sinhVien) {
-        sinhVienRepository.save(sinhVien);
+    public void sua(@RequestBody SinhVienRequest sinhVienRequest) {
+        sinhVienService.addSinhVien(sinhVienRequest);
     }
 
     @DeleteMapping("/xoa")
     public void xoa(@RequestParam("id") Integer id) {
-        sinhVienRepository.deleteById(id);
+        sinhVienService.deleteSinhVien(id);
     }
 }
