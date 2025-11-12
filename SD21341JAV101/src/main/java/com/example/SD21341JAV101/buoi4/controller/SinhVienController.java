@@ -27,6 +27,8 @@ public class SinhVienController extends HttpServlet {
         }
     }
 
-    private void hienThi(HttpServletRequest req, HttpServletResponse resp) {
+    private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("danhSach", sinhVienService.getAll());
+        req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
     }
 }
