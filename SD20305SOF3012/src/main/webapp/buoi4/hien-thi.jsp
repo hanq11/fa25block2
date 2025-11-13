@@ -49,6 +49,10 @@
                     <td>${gv.tuoi}</td>
                     <td>${gv.gioiTinh == true ? "Nam" : "Nu"}</td>
                     <td>${gv.truongHoc.tenTruong}</td>
+                    <td>
+                        <a href="/giang-vien/view-update?id=${gv.id}">View update</a>
+                        <a href="/giang-vien/delete?id=${gv.id}">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
