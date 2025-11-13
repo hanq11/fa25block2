@@ -14,7 +14,7 @@
 <body>
     Them giang vien:
     <form action="/giang-vien/add" method="post">
-        Ten: <input type="text" name="ten"> <br>
+        Ten: <input type="text" name="tenGiangVien"> <br>
         Tuoi: <input type="text" name="tuoi"> <br>
         Gioi tinh: Nam <input type="radio" name="gioiTinh" value="true">
                 Nu <input type="radio" name="gioiTinh" value="false">
@@ -49,6 +49,10 @@
                     <td>${gv.tuoi}</td>
                     <td>${gv.gioiTinh == true ? "Nam" : "Nu"}</td>
                     <td>${gv.truongHoc.tenTruong}</td>
+                    <td>
+                        <a href="/giang-vien/view-update?id=${gv.id}">View update</a>
+                        <a href="/giang-vien/delete?id=${gv.id}">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -16,4 +16,8 @@ public class TruongHocRepository {
     public List<TruongHoc> getAll() {
         return session.createQuery("SELECT th FROM TruongHoc th").list();
     }
+
+    public TruongHoc getTruongHocById(Integer id) {
+        return session.find(TruongHoc.class, id);
+    }
 }
