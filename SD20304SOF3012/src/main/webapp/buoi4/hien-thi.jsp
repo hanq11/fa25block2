@@ -12,6 +12,13 @@
     <title>Title</title>
 </head>
 <body>
+    Tim kiem theo ten:
+    <form action="/giang-vien/search" method="get">
+        Ten: <input type="text" name="ten">
+        <br>
+        <button>Search</button>
+    </form>
+    <br>
     Them giang vien:
     <form action="/giang-vien/add" method="post">
         Ten: <input type="text" name="tenGiangVien"> <br>

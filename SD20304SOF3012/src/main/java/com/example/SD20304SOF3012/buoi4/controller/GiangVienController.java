@@ -19,6 +19,7 @@ import java.io.IOException;
         "/giang-vien/update", // POST
         "/giang-vien/add", // POST
         "/giang-vien/paging", // GET
+        "/giang-vien/search", // GET
 })
 public class GiangVienController extends HttpServlet {
     GiangVienRepository giangVienRepository = new GiangVienRepository();
@@ -35,7 +36,16 @@ public class GiangVienController extends HttpServlet {
             deleteGiangVien(req, resp);
         } else if(uri.contains("paging")) {
             paging(req, resp);
+        } else if(uri.contains("search")) {
+            search(req, resp);
         }
+    }
+
+    private void search(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String ten = req.getParameter("ten");
+        req.setAttribute("listTruongHoc", truongHocRepository.getAll());
+        req.setAttribute("listGiangVien", giangVienRepository.searchByTen(ten));
+        req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req, resp);
     }
 
     private void paging(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

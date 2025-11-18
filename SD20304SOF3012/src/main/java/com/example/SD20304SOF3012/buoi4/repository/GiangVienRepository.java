@@ -62,4 +62,10 @@ public class GiangVienRepository {
         query.setMaxResults(pageSize);
         return query.list();
     }
+
+    public List<GiangVien> searchByTen(String ten) {
+        Query query = session.createQuery("SELECT gv FROM GiangVien gv WHERE gv.tenGiangVien LIKE :ten");
+        query.setParameter("ten", "%" + ten + "%");
+        return query.list();
+    }
 }
