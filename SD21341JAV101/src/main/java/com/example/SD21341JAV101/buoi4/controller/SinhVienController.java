@@ -27,7 +27,15 @@ public class SinhVienController extends HttpServlet {
             hienThi(req, resp);
         } else if(uri.contains("view-update")) {
             viewUpdate(req, resp);
+        } else if(uri.contains("delete")) {
+            deleteSinhVien(req, resp);
         }
+    }
+
+    private void deleteSinhVien(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        sinhVienService.deleteSinhVien(id);
+        resp.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void viewUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,7 +55,21 @@ public class SinhVienController extends HttpServlet {
         String uri = req.getRequestURI();
         if(uri.contains("add")) {
             addSinhVien(req, resp);
+        } else if(uri.contains("update")) {
+            updateSinhVien(req, resp);
         }
+    }
+
+    private void updateSinhVien(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Integer id = Integer.valueOf(req.getParameter("id"));
+        String ten = req.getParameter("ten");
+        Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
+        Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
+
+        SinhVien sinhVien = new SinhVien(id, ten, tuoi, gioiTinh);
+        sinhVienService.updateSinhVien(sinhVien);
+
+        resp.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void addSinhVien(HttpServletRequest req, HttpServletResponse resp) throws IOException {

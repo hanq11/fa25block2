@@ -1,8 +1,10 @@
 package com.example.SD20304SOF3012.buoi4.repository;
 
+import com.example.SD20304SOF3012.buoi1.model.SinhVien;
 import com.example.SD20304SOF3012.buoi4.model.GiangVien;
 import com.example.SD20304SOF3012.buoi4.util.HibernateConfig;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -52,5 +54,12 @@ public class GiangVienRepository {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
+    }
+
+    public List<GiangVien> paging(int pageNumber, int pageSize) {
+        Query query = session.createQuery("FROM GiangVien");
+        query.setFirstResult(pageNumber * pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
     }
 }

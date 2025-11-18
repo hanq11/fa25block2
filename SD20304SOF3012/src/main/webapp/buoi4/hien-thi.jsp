@@ -57,5 +57,7 @@
             </c:forEach>
         </tbody>
     </table>
+    <a href="/giang-vien/paging?pageNumber=${pageNumber - 1}">Prev</a>
+    <a href="/giang-vien/paging?pageNumber=${pageNumber + 1}">Next</a>
 </body>
 </html>
