@@ -12,6 +12,12 @@
     <title>Title</title>
 </head>
 <body>
+    Tim kiem giang vien:
+    <form action="/giang-vien/search" method="get">
+        Ten: <input type="text" name="ten">
+        <button>Search</button>
+    </form>
+    <br>
     Them giang vien:
     <form action="/giang-vien/add" method="post">
         Ten: <input type="text" name="tenGiangVien"> <br>
@@ -57,5 +63,7 @@
             </c:forEach>
         </tbody>
     </table>
+    <a href="/giang-vien/paging?pageNumber=${pageNumber - 1}">Prev</a>
+    <a href="/giang-vien/paging?pageNumber=${pageNumber + 1}">Next</a>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.example.SD20305SOF3012.buoi4.model.GiangVien;
 import com.example.SD20305SOF3012.buoi4.model.TruongHoc;
 import com.example.SD20305SOF3012.buoi4.util.HibernateConfig;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -52,5 +53,18 @@ public class GiangVienRepository {
             exception.printStackTrace();
             session.getTransaction().rollback();
         }
+    }
+
+    public List<GiangVien> paging(int pageSize, int pageNumber) {
+        Query query = session.createQuery("FROM GiangVien");
+        query.setFirstResult(pageSize * pageNumber);
+        query.setMaxResults(pageSize);
+        return query.list();
+    }
+
+    public List<GiangVien> search(String ten) {
+        Query query = session.createQuery("SELECT gv FROM GiangVien gv WHERE gv.tenGiangVien LIKE :ten");
+        query.setParameter("ten", "%" + ten + "%");
+        return query.list();
     }
 }

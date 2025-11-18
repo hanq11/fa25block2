@@ -1,6 +1,6 @@
 package com.example.SD20304SOF3012.buoi4.repository;
 
-import com.example.SD20304SOF3012.buoi1.model.SinhVien;
+
 import com.example.SD20304SOF3012.buoi4.model.GiangVien;
 import com.example.SD20304SOF3012.buoi4.util.HibernateConfig;
 import org.hibernate.Session;
