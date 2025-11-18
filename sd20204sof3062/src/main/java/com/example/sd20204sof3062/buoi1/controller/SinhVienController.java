@@ -1,6 +1,8 @@
 package com.example.sd20204sof3062.buoi1.controller;
 
+import com.example.sd20204sof3062.buoi1.entity.LopHoc;
 import com.example.sd20204sof3062.buoi1.entity.SinhVien;
+import com.example.sd20204sof3062.buoi1.repository.LopHocRepository;
 import com.example.sd20204sof3062.buoi1.repository.SinhVienRepository;
 import com.example.sd20204sof3062.buoi1.request.SinhVienRequest;
 import com.example.sd20204sof3062.buoi1.response.SinhVienResponse;
@@ -18,6 +20,14 @@ public class SinhVienController {
     @Autowired
     SinhVienService sinhVienService;
 
+    @Autowired
+    LopHocRepository lopHocRepository;
+
+    @GetMapping("/lop-hoc")
+    public List<LopHoc> getAllLopHoc() {
+        return lopHocRepository.findAll();
+    }
+
     @GetMapping("/hien-thi")
     public List<SinhVienResponse> hienThi() {
         return sinhVienService.getAll();
@@ -26,6 +36,11 @@ public class SinhVienController {
     @PostMapping("/them")
     public void them(@RequestBody @Valid SinhVienRequest sinhVienRequest) {
         sinhVienService.addSinhVien(sinhVienRequest);
+    }
+
+    @GetMapping("/{id}")
+    public SinhVienResponse detail(@PathVariable("id") Integer id) {
+        return sinhVienService.getById(id);
     }
 
     @PutMapping("/sua")
