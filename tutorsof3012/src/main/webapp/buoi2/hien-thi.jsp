@@ -12,12 +12,22 @@
     <title>Title</title>
 </head>
 <body>
+  Them hoc sinh:
+  <form action="/hoc-sinh/them" method="post">
+    Ten hoc sinh: <input type="text" name="tenHocSinh"> <br>
+    Tuoi: <input type="text" name="tuoi"> <br>
+    Dang hoc: Dang hoc <input type="radio" name="dangHoc" value="true">
+      Thoi hoc: <input type="radio" name="dangHoc" value="false">
+    <br>
+    Truong hoc: <select name="truongHoc">
+      <c:forEach items="${listTruongHoc}" var="th">
+        <option value="${th.id}" label="${th.tenTruong}"></option>
+      </c:forEach>
+    </select>
+    <br>
+    <button>Them</button>
+  </form>
 
-  <select name="">
-    <c:forEach items="${listTruongHoc}" var="th">
-      <option value="${th.id}" label="${th.tenTruong}"></option>
-    </c:forEach>
-  </select>
   <br>
   Bang hoc sinh:
   <table>
@@ -28,6 +38,7 @@
         <th>Tuoi</th>
         <th>Dang hoc</th>
         <th>Truong hoc</th>
+        <th>Hanh dong</th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +49,10 @@
           <td>${hs.tuoi}</td>
           <td>${hs.dangHoc == true ? "Dang hoc" : "Thoi hoc"}</td>
           <td>${hs.truongHoc.tenTruong}</td>
+          <td>
+            <a href="/hoc-sinh/view-update?id=${hs.id}">View update</a>
+            <a href="/hoc-sinh/xoa?id=${hs.id}">Xoa</a>
+          </td>
         </tr>
       </c:forEach>
     </tbody>
