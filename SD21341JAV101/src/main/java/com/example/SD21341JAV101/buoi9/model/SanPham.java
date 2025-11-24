@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SanPham {
-    private String maSP;
+    private Integer maSP;
     private String tenSP;
     private Integer soLuong;
     private Boolean tinhTrang;

@@ -12,6 +12,16 @@
     <title>Title</title>
 </head>
 <body>
+    Them san pham:
+    <form action="/san-pham/them" method="post">
+        Ten san pham: <input type="text" name="tenSP"> <br>
+        So luong: <input type="text" name="soLuong"> <br>
+        Tinh trang: Con hang <input type="radio" name="tinhTrang" value="true">
+        Het hang: <input type="radio" name="tinhTrang" value="false">
+        <br>
+        <button>Them</button>
+    </form>
+    <br>
     Bang thong tin:
     <table>
         <thead>
@@ -20,6 +30,7 @@
                 <th>Ten SP</th>
                 <th>So luong</th>
                 <th>Tinh trang</th>
+                <th>Hanh dong</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +40,10 @@
                     <td>${sp.tenSP}</td>
                     <td>${sp.soLuong}</td>
                     <td>${sp.tinhTrang == true ? "Con hang" : "Het hang"}</td>
+                    <td>
+                        <a href="/san-pham/view-update?masp=${sp.maSP}">View update</a>
+                        <a href="/san-pham/xoa?masp=${sp.maSP}">Xoa</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
