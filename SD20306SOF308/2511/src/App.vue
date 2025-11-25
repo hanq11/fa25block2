@@ -58,6 +58,7 @@ const add = () => {
   listSinhVien.value.push({
     ...newSinhVien.value
   });
+  clearForm()
 }
 const updateIndex = ref(-1)
 
@@ -73,10 +74,21 @@ const update = () => {
     ...newSinhVien.value
   }
   updateIndex.value = -1
+  clearForm()
 }
 
 const deleteSinhVien = (index) => {
   listSinhVien.value.splice(index, 1)
+}
+
+const clearForm = () => {
+  newSinhVien.value = {
+    mssv: '',
+    hoten: '',
+    diachi: '',
+    gioitinh: '',
+    trangthai: ''
+  }
 }
 
 </script>
@@ -107,7 +119,7 @@ const deleteSinhVien = (index) => {
       <input type="radio" value="Qua mon" name="trangThai" v-model="newSinhVien.trangthai">Qua mon
     </div>
     <button type="button" class="btn btn-primary" @click="add">Them</button>
-    <button type="button" class="btn btn-primary" @click="update">Cap nhat</button>
+    <button type="button" class="btn btn-primary" v-if="updateIndex != -1" @click="update">Cap nhat</button>
   </form>
 
   <h3>Danh sach sinh vien la </h3>
