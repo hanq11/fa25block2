@@ -3,6 +3,7 @@ package com.example.tutorsof3012.buoi2.repository;
 import com.example.tutorsof3012.buoi2.entity.HocSinh;
 import com.example.tutorsof3012.buoi2.util.HibernateConfigBuoi2;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -15,6 +16,13 @@ public class HocSinhRepository {
 
     public List<HocSinh> getAll() {
         return session.createQuery("FROM HocSinh").list();
+    }
+
+    // JPQL
+    public List<HocSinh> timKiemTheoTen(String ten) {
+        Query query = session.createQuery("SELECT hs FROM HocSinh hs WHERE hs.tenHocSinh LIKE :ten");
+        query.setParameter("ten", "%" + ten + "%");
+        return query.list();
     }
 
     public HocSinh getHocSinhById(Integer id) {
@@ -52,6 +60,13 @@ public class HocSinhRepository {
             session.getTransaction().rollback();
             exception.printStackTrace();
         }
+    }
+
+    public List<HocSinh> phanTrang(Integer pageNumber, Integer pageSize) {
+        Query query = session.createQuery("FROM HocSinh hs");
+        query.setFirstResult(pageNumber * pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
     }
 }
 

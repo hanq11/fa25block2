@@ -12,6 +12,13 @@
     <title>Title</title>
 </head>
 <body>
+  Tim kiem theo ten:
+  <form action="/hoc-sinh/tim-kiem" method="get">
+    Ten: <input type="text" name="tenHocSinh">
+    <br>
+    <button>Tim kiem</button>
+  </form>
+  <br>
   Them hoc sinh:
   <form action="/hoc-sinh/them" method="post">
     Ten hoc sinh: <input type="text" name="tenHocSinh"> <br>
@@ -57,5 +64,7 @@
       </c:forEach>
     </tbody>
   </table>
+  <a href="/hoc-sinh/phan-trang?pageNumber=${pageNumber - 1}">Prev</a>
+  <a href="/hoc-sinh/phan-trang?pageNumber=${pageNumber + 1}">Next</a>
 </body>
 </html>

@@ -18,6 +18,8 @@ import java.io.IOException;
         "/hoc-sinh/xoa", // GET
         "/hoc-sinh/sua", // POST
         "/hoc-sinh/them", // POST
+        "/hoc-sinh/tim-kiem", // GET
+        "/hoc-sinh/phan-trang", // GET
 })
 public class HocSinhController extends HttpServlet {
     HocSinhRepository hocSinhRepository = new HocSinhRepository();
@@ -32,7 +34,30 @@ public class HocSinhController extends HttpServlet {
             viewUpdate(req, resp);
         } else if(uri.contains("xoa")) {
             xoaHocSinh(req, resp);
+        } else if(uri.contains("tim-kiem")) {
+            timKiem(req, resp);
+        } else if(uri.contains("phan-trang")) {
+            phanTrang(req, resp);
         }
+    }
+
+    private void phanTrang(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int pageSize = 3;
+        int pageNumber = 0;
+        if(req.getParameter("pageNumber") != null) {
+            pageNumber = Integer.valueOf(req.getParameter("pageNumber"));
+        }
+        req.setAttribute("pageNumber", pageNumber);
+        req.setAttribute("listHocSinh", hocSinhRepository.phanTrang(pageNumber, pageSize));
+        req.setAttribute("listTruongHoc", truongHocRepository.getAll());
+        req.getRequestDispatcher("/buoi2/hien-thi.jsp").forward(req, resp);
+    }
+
+    private void timKiem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String tenHocSinh = req.getParameter("tenHocSinh");
+        req.setAttribute("listHocSinh", hocSinhRepository.timKiemTheoTen(tenHocSinh));
+        req.setAttribute("listTruongHoc", truongHocRepository.getAll());
+        req.getRequestDispatcher("/buoi2/hien-thi.jsp").forward(req, resp);
     }
 
     private void xoaHocSinh(HttpServletRequest req, HttpServletResponse resp) throws IOException {

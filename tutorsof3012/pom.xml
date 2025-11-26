@@ -68,6 +68,11 @@
             <version>3.0.1</version>
         </dependency>
 <!--        su dung cac ham trong jsp, vi du: foreach-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+        </dependency>
     </dependencies>
 
     <build>
