@@ -3,7 +3,6 @@ package com.example.sd20204sof3062.buoi1.security;
 import com.example.sd20204sof3062.buoi1.entity.Account;
 import com.example.sd20204sof3062.buoi1.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
