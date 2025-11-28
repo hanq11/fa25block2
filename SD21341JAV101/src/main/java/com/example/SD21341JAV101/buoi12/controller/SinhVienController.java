@@ -64,7 +64,10 @@ public class SinhVienController extends HttpServlet {
         Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
         Float diem = Float.valueOf(req.getParameter("diem"));
         Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
-        sinhVienRepository.updateSinhVien(new SinhVien(id, ten, tuoi, diem, gioiTinh));
+
+        SinhVien sinhVien = new SinhVien(id, ten, tuoi, diem, gioiTinh);
+        sinhVienRepository.updateSinhVien(sinhVien);
+
         resp.sendRedirect("/sinh-vien/hien-thi");
     }
 
@@ -73,7 +76,10 @@ public class SinhVienController extends HttpServlet {
         Integer tuoi = Integer.valueOf(req.getParameter("tuoi"));
         Float diem = Float.valueOf(req.getParameter("diem"));
         Boolean gioiTinh = Boolean.valueOf(req.getParameter("gioiTinh"));
-        sinhVienRepository.addSinhVien(new SinhVien(null, ten, tuoi, diem, gioiTinh));
+
+        SinhVien sinhVien = new SinhVien(null, ten, tuoi, diem, gioiTinh);
+        sinhVienRepository.addSinhVien(sinhVien);
+
         resp.sendRedirect("/sinh-vien/hien-thi");
     }
 }
